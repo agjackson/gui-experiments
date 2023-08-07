@@ -2,7 +2,7 @@
 import tkinter as tk
 from tkinter import messagebox
 
-class MyGUI:
+"""class MyGUI:
 
     def __init__(self):
         
@@ -62,9 +62,9 @@ class MyGUI:
         if messagebox.askyesno(title="Quit?", message="Do you want to quit?"):
             self.root.destroy'''
 
-MyGUI()
+MyGUI()"""
 
-"""root = tk.Tk()
+root = tk.Tk()
 
 root.geometry("500x500")
 root.title("Arlie's GUI")
@@ -110,4 +110,4 @@ button = tk.Button(root, text="Click", font=('Arial', 14))
 button.pack(padx=10, pady=10)
 
 
-root.mainloop()"""
+root.mainloop()
