@@ -10,42 +10,65 @@ class TimelineHeader(ttk.Frame):
         self.root = tk.Tk()
 
         ttk.Frame.__init__(self, master)
-        self.pack(fill='x',anchor='center')
+        #self.pack(fill='x',anchor='center')
+        self.pack(padx=5, pady=10)
 
-        LABEL_WIDTH = 20  # we can change this
+        LABEL_WIDTH = 25  # we can change this
+        PADDING = 5
+
+        labelFrame = tk.Frame(self.root)
+        labelFrame.columnconfigure(0, weight=1)
+        labelFrame.columnconfigure(1, weight=1)
+        labelFrame.columnconfigure(2, weight=1)
+        labelFrame.columnconfigure(3, weight=1)
 
         # timeline colors
         self.bg_selected = 'orange'
-        self.fg_selected = 'white'
+        self.fg_selected = '#f9a602'
         self.bg_unselected = '#fce5cd'
-        self.fg_unselected = '#ff9900'
+        self.fg_unselected = '#b1560f'
 
         self.imp_text = 'Import data'
-        self.import_label = ttk.Label(self,text=self.imp_text,width=LABEL_WIDTH,anchor='center')
+        self.import_label = ttk.Label(self,text=self.imp_text,font=('Arial', 14),width=LABEL_WIDTH,padding=PADDING,anchor='center')
         self.import_label['background'] = self.bg_selected
         self.import_label['foreground'] = self.fg_selected
 
         self.set_text = 'Redaction scope'
-        self.settings_label = ttk.Label(self,text=self.set_text,width=LABEL_WIDTH,anchor='center')
+        self.settings_label = ttk.Label(self,text=self.set_text,font=('Arial', 14),width=LABEL_WIDTH,padding=PADDING,anchor='center')
         self.settings_label['background'] = self.bg_unselected
         self.settings_label['foreground'] = self.fg_unselected
 
         self.red_text = 'Review and revise'
-        self.review_label = ttk.Label(self,text=self.red_text,width=LABEL_WIDTH,anchor='center')
+        self.review_label = ttk.Label(self,text=self.red_text,font=('Arial', 14),width=LABEL_WIDTH,padding=PADDING,anchor='center')
         self.review_label['background'] = self.bg_unselected
         self.review_label['foreground'] = self.fg_unselected
 
         self.exp_text = 'Export data'
-        self.export_label = ttk.Label(self,text=self.exp_text,width=LABEL_WIDTH,anchor='center')
+        self.export_label = ttk.Label(self,text=self.exp_text,font=('Arial', 14),width=LABEL_WIDTH,padding=PADDING,anchor='center')
         self.export_label['background'] = self.bg_unselected
         self.export_label['foreground'] = self.fg_unselected
 
         self.current_step = self.import_label
 
-        self.import_label.pack(side='left', padx=5, pady=5)
-        self.settings_label.pack(side='left', padx=5, pady=5)
-        self.review_label.pack(side='left', padx=5, pady=5)
-        self.export_label.pack(side='left', padx=5, pady=5)
+        """self.import_label.pack(padx=5, pady=5)
+        self.settings_label.pack(padx=5, pady=5)
+        self.review_label.pack(padx=5, pady=5)
+        self.export_label.pack(padx=5, pady=5)"""
+
+        self.import_label.grid(row=0, column=0, sticky=tk.W+tk.E)
+        self.settings_label.grid(row=0, column=1, sticky=tk.W+tk.E)
+        self.review_label.grid(row=0, column=2, sticky=tk.W+tk.E)
+        self.export_label.grid(row=0, column=3, sticky=tk.W+tk.E)
+
+        """self.mb = ttk.Menubutton(self, text='My widgets', style='info.Outline.TMenubutton')
+        self.menu = tk.Menu(self.mb)
+        option_var = tk.StringVar()
+        for option in ['option 1', 'option 2', 'option 3']:
+            self.menu.add_radiobutton(label=option, value=option, variable=option_var)
+
+        self.mb['menu'] = self.menu
+
+        self.mb.grid(row=1, column=0,sticky=tk.W+tk.E)"""
 
         self.root.mainloop()
 
