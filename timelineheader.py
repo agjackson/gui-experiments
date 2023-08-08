@@ -60,16 +60,6 @@ class TimelineHeader(ttk.Frame):
         self.review_label.grid(row=0, column=2, sticky=tk.W+tk.E)
         self.export_label.grid(row=0, column=3, sticky=tk.W+tk.E)
 
-        """self.mb = ttk.Menubutton(self, text='My widgets', style='info.Outline.TMenubutton')
-        self.menu = tk.Menu(self.mb)
-        option_var = tk.StringVar()
-        for option in ['option 1', 'option 2', 'option 3']:
-            self.menu.add_radiobutton(label=option, value=option, variable=option_var)
-
-        self.mb['menu'] = self.menu
-
-        self.mb.grid(row=1, column=0,sticky=tk.W+tk.E)"""
-
         self.root.mainloop()
 
 

@@ -1,12 +1,7 @@
 #!/usr/bin/env python
-
-import customtkinter
 import tkinter as tk
 from tkinter import *
 from tkinter import ttk
-
-customtkinter.set_appearance_mode()
-
 
 class EventBinding:
     def __init__(self):
