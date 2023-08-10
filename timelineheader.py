@@ -90,4 +90,5 @@ class TimelineHeader(ttk.Frame):
         elif(txt == self.exp_text):
             self.swap_active_color(self.review_label)
 
+
 TimelineHeader()
