@@ -4,19 +4,19 @@ import tkinter as tk
 from tkinter import * 
 from tkinter import (ttk, filedialog as fd)
 
+# TimelineHeader inherits from the ttk.Frame class, meaning it will have all 
+# the properties/methods of a ttk.Frame, and any added custom functionality
 class TimelineHeader(ttk.Frame):
     def __init__(self,master=None):
+        super().__init__(master)
 
-        self.root = tk.Tk()
-
-        ttk.Frame.__init__(self, master)
         #self.pack(fill='x',anchor='center')
         self.pack(padx=5, pady=10)
 
         LABEL_WIDTH = 25  # we can change this
         PADDING = 5
 
-        labelFrame = tk.Frame(self.root)
+        labelFrame = tk.Frame(self)
         labelFrame.columnconfigure(0, weight=1)
         labelFrame.columnconfigure(1, weight=1)
         labelFrame.columnconfigure(2, weight=1)
@@ -60,7 +60,7 @@ class TimelineHeader(ttk.Frame):
         self.review_label.grid(row=0, column=2, sticky=tk.W+tk.E)
         self.export_label.grid(row=0, column=3, sticky=tk.W+tk.E)
 
-        self.root.mainloop()
+        self.mainloop()
 
 
     def swap_active_color(self,lbl):

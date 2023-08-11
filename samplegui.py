@@ -11,16 +11,13 @@ class SampleGUI(ttk.Frame):
         #self.pack(padx=5, pady=10)
 
         mainframe = ttk.Frame(self, padding="5")
-        mainframe.grid(column=0, row=0, sticky=(N, W, E, S))
+        mainframe.grid(column=0, row=0, sticky=(tk.N, tk.W, tk.E, tk.S))
         self.columnconfigure(0, weight=1)
         self.rowconfigure(0, weight=1)
 
         headerFrame = ttk.Frame(mainframe, padding="5")
-        headerFrame.grid(column=0, row=0, sticky=(N, W, E, S))
-        headerFrame.columnconfigure(0, weight=1)
-        headerFrame.columnconfigure(1, weight=1)
-        headerFrame.columnconfigure(2, weight=1)
-        headerFrame.columnconfigure(3, weight=1)
+        headerFrame.grid(column=0, row=0, sticky=(tk.N, tk.W, tk.E, tk.S))
+        headerFrame.columnconfigure((0, 1, 2, 3), uniform="buttons")
 
         headerFrame.b1text = 'Button 1'
         headerFrame.b2text = 'Button 2'
@@ -38,6 +35,12 @@ class SampleGUI(ttk.Frame):
         button2.grid(row=0, column=1, sticky=tk.W+tk.E)
         button3.grid(row=0, column=3, sticky=tk.W+tk.E)
         button4.grid(row=0, column=4, sticky=tk.W+tk.E)
+
+        # center the headerFrame
+        mainframe.grid_rowconfigure(0, weight=1)
+        mainframe.grid_columnconfigure(0, weight=1)
+
+
 
 if __name__ == "__main__":
     root = tk.Tk()

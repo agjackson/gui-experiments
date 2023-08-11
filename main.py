@@ -2,7 +2,7 @@
 import tkinter as tk
 from tkinter import messagebox
 
-"""class MyGUI:
+class MyGUI:
 
     def __init__(self):
         
@@ -62,7 +62,7 @@ from tkinter import messagebox
         if messagebox.askyesno(title="Quit?", message="Do you want to quit?"):
             self.root.destroy'''
 
-MyGUI()"""
+MyGUI()
 
 root = tk.Tk()
 
