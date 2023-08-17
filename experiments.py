@@ -3,6 +3,28 @@ import tkinter as tk
 from tkinter import *
 from tkinter import ttk
 
+class StyleExp:
+    def __init__(self):
+
+        self.root = tk.Tk()
+        self.root.title("Style Experiments")
+
+        # ------------------- STYLING
+        s = ttk.Style()
+        s.configure('mainFrame.TFrame', background = 'red')
+
+
+        # ------------------- WIDGETS
+        mainFrame = ttk.Frame(self.root, width=250, height=250, style='mainFrame.TFrame')
+        mainFrame.grid()
+
+        # ------------------- GRID CONFIGURATION
+
+        self.root.resizable(width=False, height=False)
+        self.root.mainloop()
+
+StyleExp()
+
 class DropDownMenu:
     def __init__(self):
         
@@ -32,7 +54,7 @@ class DropDownMenu:
 
         self.root.mainloop()
 
-DropDownMenu()
+#DropDownMenu()
 
 class DifferentWidgets:
     def __init__(self):
@@ -80,7 +102,7 @@ class DifferentWidgets:
 
         self.root.mainloop()
 
-DifferentWidgets()
+#DifferentWidgets()
 
 class EventBinding:
     def __init__(self):
@@ -112,4 +134,4 @@ class EventBinding:
         <Enter>: Mouse pointer enters widget.
         <Leave>: Mouse pointer leaves widget"""
 
-EventBinding()
+#EventBinding()

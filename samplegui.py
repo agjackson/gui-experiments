@@ -8,38 +8,43 @@ class SampleGUI(ttk.Frame):
     def __init__(self, master=None):
         super().__init__(master)
 
-        #self.pack(padx=5, pady=10)
+        #self.pack(padx=5, pady=5)
 
-        mainframe = ttk.Frame(self, padding="5")
+        #---------------- STYLING
+        s = ttk.Style()
+        s.configure('mainframe.TFrame', background = '#102C57')
+
+        #---------------- WIDGETS
+
+        mainframe = ttk.Frame(self, padding="5", style='mainframe.TFrame')
         mainframe.grid(column=0, row=0, sticky=(tk.N, tk.W, tk.E, tk.S))
-        self.columnconfigure(0, weight=1)
+        """self.columnconfigure(0, weight=1)
         self.rowconfigure(0, weight=1)
 
-        headerFrame = ttk.Frame(mainframe, padding="5")
-        headerFrame.grid(column=0, row=0, sticky=(tk.N, tk.W, tk.E, tk.S))
-        headerFrame.columnconfigure((0, 1, 2, 3), uniform="buttons")
+        headerFrame = ttk.Frame(mainframe, height = 20, relief="ridge", padding="5")
+        #headerFrame.grid(column=0, row=0, sticky=(tk.N, tk.W, tk.E, tk.S))
+        #headerFrame.columnconfigure((0, 1, 2, 3), uniform="buttons")
+        headerFrame.columnconfigure(0, weight=1)
+        headerFrame.columnconfigure(1, weight=1)
+        headerFrame.columnconfigure(2, weight=1)
+        headerFrame.columnconfigure(3, weight=1)
 
-        headerFrame.b1text = 'Button 1'
-        headerFrame.b2text = 'Button 2'
-        headerFrame.b3text = 'Button 3'
-        headerFrame.b4text = 'Button 4'
+        self.l1text = 'Label 1'
+        self.l2text = 'Label 2'
+        self.l3text = 'Label 3'
+        self.l4text = 'Label 4'
 
-        # add button style
+        self.label1 = ttk.Label(headerFrame,text=self.l1text)
+        self.label2 = ttk.Label(headerFrame,text=self.l2text)
+        self.label3 = ttk.Label(headerFrame,text=self.l3text)
+        self.label4 = ttk.Label(headerFrame,text=self.l4text)
 
-        button1 = ttk.Button(headerFrame,text=headerFrame.b1text,width=12,padding=5)
-        button2 = ttk.Button(headerFrame,text=headerFrame.b2text,width=12,padding=5)
-        button3 = ttk.Button(headerFrame,text=headerFrame.b3text,width=12,padding=5)
-        button4 = ttk.Button(headerFrame,text=headerFrame.b4text,width=12,padding=5)
+        #---------------- GRID CONFIGURATION
 
-        button1.grid(row=0, column=0, sticky=tk.W+tk.E)
-        button2.grid(row=0, column=1, sticky=tk.W+tk.E)
-        button3.grid(row=0, column=3, sticky=tk.W+tk.E)
-        button4.grid(row=0, column=4, sticky=tk.W+tk.E)
-
-        # center the headerFrame
-        mainframe.grid_rowconfigure(0, weight=1)
-        mainframe.grid_columnconfigure(0, weight=1)
-
+        self.label1.grid(row=0, column=0, sticky=tk.W+tk.E)
+        self.label2.grid(row=0, column=1, sticky=tk.W+tk.E)
+        self.label3.grid(row=0, column=2, sticky=tk.W+tk.E)
+        self.label4.grid(row=0, column=3, sticky=tk.W+tk.E)"""
 
 
 if __name__ == "__main__":
