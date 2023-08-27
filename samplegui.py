@@ -15,8 +15,8 @@ class SampleGUI(ttk.Frame):
         super().__init__()
 
         BOLD_FONT = ('Arial', 22, 'bold')
-        NORM_FONT = ('Arial', 20)
-        SMALL_FONT = ('Arial', 16)
+        NORM_FONT = ('Arial', 22)
+        SMALL_FONT = ('Arial', 18)
 
         LABEL_WIDTH = 25 
         PADDING = 5
@@ -28,6 +28,11 @@ class SampleGUI(ttk.Frame):
 
         s.configure('norm.TLabel', font = NORM_FONT)
         s.configure('small.TLabel', foreground = GRAY, font = SMALL_FONT)
+
+        s.configure('browse.TButton', font=NORM_FONT,padding=6)
+
+        s.configure('orange.TButton', background = ORANGE, font = SMALL_FONT, padding=8)
+        s.configure('gray.TButton', background= GRAY, font = SMALL_FONT, padding = 8)
 
         #------- WIDGETS
 
@@ -45,24 +50,27 @@ class SampleGUI(ttk.Frame):
         spacer1 = ttk.Label(mainframe, text='')
 
         self.selection = ttk.Label(mainframe, text='Select files to redact: ', style='norm.TLabel')
-        self.browse = ttk.Button(mainframe, text='Browse')
+        self.browse = ttk.Button(mainframe, text='Browse', style='browse.TButton')
         self.nofiles = ttk.Label(mainframe, text='No files selected', style='norm.TLabel')
         self.notice = ttk.Label(mainframe, text='Currently, we only accept CSV and TXT files.', style='small.TLabel')
 
         spacer2 = ttk.Label(mainframe, text='')
 
         self.preview = ttk.Label(mainframe, text='File Preview', font=BOLD_FONT)
-        self.file = ttk.Frame(mainframe, width=1000, height=400, borderwidth=5, relief="ridge")
 
-        self.back = ttk.Button(mainframe, text='<< Go Back')
-        self.cont = ttk.Button(mainframe, text='Save and Continue >>')
+        spacer3 = ttk.Label(mainframe, text='')
+
+        self.file = ttk.Frame(mainframe, width=1300, height=400, borderwidth=5, relief="ridge")
+
+        spacer4 = ttk.Label(mainframe, text='')
+
+        self.back = ttk.Button(mainframe, text='<< Go Back', style='orange.TButton')
+        self.cont = ttk.Button(mainframe, text='Save and Continue >>', style='gray.TButton')
         self.cont.state(['disabled']) 
 
         #------- GRID CONFIGURATION
 
         mainframe.grid(column=0, row=0, sticky=(tk.N,tk.W,tk.E,tk.S))
-
-
         headerframe.grid(column=0, row=0, columnspan=4, sticky=(tk.N,tk.W,tk.E,tk.S))
 
         self.imp.grid(row=0, column=0, sticky=tk.W+tk.E)
@@ -70,7 +78,7 @@ class SampleGUI(ttk.Frame):
         self.rev.grid(row=0, column=2, sticky=tk.W+tk.E)
         self.exp.grid(row=0, column=3, sticky=tk.W+tk.E)
 
-        spacer1.grid(column=0, row=1, columnspan=4, pady=26)
+        spacer1.grid(column=0, row=1, columnspan=4, pady=22)
 
         self.selection.grid(column=0, row=2, sticky=(tk.N, tk.W), pady=5)
         #self.selection.pack(padx=5,pady=15,side=tk.LEFT)
@@ -78,13 +86,18 @@ class SampleGUI(ttk.Frame):
         self.nofiles.grid(column=2, row=2, columnspan=2,sticky=(tk.N, tk.W), pady=5)
         self.notice.grid(column=0, row=3, sticky=(tk.N, tk.W), padx=5)
 
-        spacer2.grid(column=0, row=4, columnspan=4, pady=26)
+        spacer2.grid(column=0, row=4, columnspan=4, pady=22)
 
         self.preview.grid(column=0, row=5, sticky=(tk.N, tk.W), padx=5)
-        self.file.grid(column=0,row=6, columnspan=4, sticky=(tk.N, tk.W), padx=5)
 
-        self.back.grid(column=0, row=7,sticky=(tk.N, tk.W), pady=18)
-        self.cont.grid(column=3, row=7,sticky=(tk.N, tk.E), pady=18)
+        spacer3.grid(column=0, row=6, columnspan=4, pady=4)
+
+        self.file.grid(column=0,row=7, columnspan=4, sticky=(tk.N, tk.W), padx=5)
+
+        spacer4.grid(column=0, row=8, columnspan=4, pady=6)
+
+        self.back.grid(column=0, row=9,sticky=(tk.N, tk.W))
+        self.cont.grid(column=3, row=9,sticky=(tk.N, tk.E))
 
         
 
