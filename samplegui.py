@@ -1,58 +1,102 @@
 #!/usr/bin/env python
 
 import tkinter as tk
-from tkinter import * 
+import tkinter.messagebox
 from tkinter import (ttk, filedialog as fd)
 
+WHITE = '#FAF9F6'
+SOFT_ORANGE = '#FBBF77'
+ORANGE = '#F28500'
+BLACK = '#0C0908'
+GREY = '#545454'
+
 class SampleGUI(ttk.Frame):
-    def __init__(self, master=None):
-        super().__init__(master)
+    def __init__(self):
+        super().__init__()
 
-        #self.pack(padx=5, pady=5)
+        NORM_FONT = ('Arial', 20)
+        HEADER_FONT = ('Arial', 18)
+        SMALL_FONT = ('Arial', 16)
+        BOLD_FONT = ('Arial', 20, 'bold')
 
-        #---------------- STYLING
-        s = ttk.Style()
-        s.configure('mainframe.TFrame', background = '#102C57')
+        LABEL_WIDTH = 25 
+        PADDING = 5
 
-        #---------------- WIDGETS
+        #------- WIDGETS
 
-        mainframe = ttk.Frame(self, padding="5", style='mainframe.TFrame')
-        mainframe.grid(column=0, row=0, sticky=(tk.N, tk.W, tk.E, tk.S))
-        """self.columnconfigure(0, weight=1)
+        mainframe = ttk.Frame(self,borderwidth=3,padding="60 12 12 12", relief="ridge")
+        self.columnconfigure(0, weight=1)
         self.rowconfigure(0, weight=1)
 
-        headerFrame = ttk.Frame(mainframe, height = 20, relief="ridge", padding="5")
-        #headerFrame.grid(column=0, row=0, sticky=(tk.N, tk.W, tk.E, tk.S))
-        #headerFrame.columnconfigure((0, 1, 2, 3), uniform="buttons")
-        headerFrame.columnconfigure(0, weight=1)
-        headerFrame.columnconfigure(1, weight=1)
-        headerFrame.columnconfigure(2, weight=1)
-        headerFrame.columnconfigure(3, weight=1)
+        headerframe = ttk.Frame(mainframe,borderwidth=3, padding="12 12 12 12")
 
-        self.l1text = 'Label 1'
-        self.l2text = 'Label 2'
-        self.l3text = 'Label 3'
-        self.l4text = 'Label 4'
+        self.imp = ttk.Label(headerframe,text='Import data',font=HEADER_FONT,width=LABEL_WIDTH,padding=PADDING,anchor='center')
+        self.imp['background'] = ORANGE
+        self.imp['foreground'] = WHITE
 
-        self.label1 = ttk.Label(headerFrame,text=self.l1text)
-        self.label2 = ttk.Label(headerFrame,text=self.l2text)
-        self.label3 = ttk.Label(headerFrame,text=self.l3text)
-        self.label4 = ttk.Label(headerFrame,text=self.l4text)
+        self.sett = ttk.Label(headerframe,text='Project settings',font=HEADER_FONT,width=LABEL_WIDTH,padding=PADDING,anchor='center')
+        self.sett['background'] = SOFT_ORANGE
+        self.sett['foreground'] = ORANGE
 
-        #---------------- GRID CONFIGURATION
+        self.rev = ttk.Label(headerframe,text='Review redactions',font=HEADER_FONT,width=LABEL_WIDTH,padding=PADDING,anchor='center')
+        self.rev['background'] = SOFT_ORANGE
+        self.rev['foreground'] = ORANGE
 
-        self.label1.grid(row=0, column=0, sticky=tk.W+tk.E)
-        self.label2.grid(row=0, column=1, sticky=tk.W+tk.E)
-        self.label3.grid(row=0, column=2, sticky=tk.W+tk.E)
-        self.label4.grid(row=0, column=3, sticky=tk.W+tk.E)"""
+        self.exp = ttk.Label(headerframe,text='Export data',font=HEADER_FONT,width=LABEL_WIDTH,padding=PADDING,anchor='center')
+        self.exp['background'] = SOFT_ORANGE
+        self.exp['foreground'] = ORANGE
+
+        self.selection = ttk.Label(mainframe, text='Select files to redact: ', font=NORM_FONT)
+
+        self.browse = ttk.Button(mainframe, text='Browse')
+
+        self.nofiles = ttk.Label(mainframe, text='No files selected', font=NORM_FONT)
+
+        self.notice = ttk.Label(mainframe, text='Currently, we only accept CSV and TXT files.', font=SMALL_FONT)
+        self.notice['foreground'] = GREY
+
+        self.preview = ttk.Label(mainframe, text='File Preview', font=BOLD_FONT)
+
+        self.file = ttk.Frame(mainframe, width=1000, height=400, borderwidth=5, relief="ridge")
+
+        self.back = ttk.Button(mainframe, text='<< Go Back')
+
+        self.cont = ttk.Button(mainframe, text='Save and Continue >>')
+
+        #------- GRID CONFIGURATION
+
+        mainframe.grid(column=0, row=0, sticky=(tk.N,tk.W,tk.E,tk.S))
+        headerframe.grid(column=0, row=0, columnspan=4, sticky=(tk.N,tk.W,tk.E,tk.S))
+
+        self.imp.grid(row=0, column=0, sticky=tk.W+tk.E)
+        self.sett.grid(row=0, column=1, sticky=tk.W+tk.E)
+        self.rev.grid(row=0, column=2, sticky=tk.W+tk.E)
+        self.exp.grid(row=0, column=3, sticky=tk.W+tk.E)
+
+        self.selection.grid(column=0, row=1, sticky=(tk.N, tk.W), padx=5)
+        self.browse.grid(column=1, row=1, sticky=(tk.N, tk.W), padx=5)
+        self.nofiles.grid(column=2, row=1, columnspan=2,sticky=(tk.N, tk.W), padx=5)
+        self.notice.grid(column=0, row=2, sticky=(tk.N, tk.W), padx=5)
+        self.preview.grid(column=0, row=3, sticky=(tk.N, tk.W), padx=5)
+        self.file.grid(column=0,row=4, columnspan=4, sticky=(tk.N, tk.W), padx=5)
+        self.back.grid(column=0, row=5)
+        self.cont.grid(column=4, row=5)
 
 
 if __name__ == "__main__":
     root = tk.Tk()
-    root.geometry("580x500")
-    root.title("Sample GUI")
+    root.title("Arlie's GUI")
 
-    sample = SampleGUI(master=root)
-    sample.pack(fill="both", expand=True)
+    root.configure(bg=WHITE)           # doesn't work with Tk 8.5
+
+    width = root.winfo_screenwidth()               
+    height = root.winfo_screenheight()               
+    root.geometry("%dx%d" % (width, height))
+    root.resizable(False,True)
+
+    root.minsize(width=800,height=500)   
+
+    app = SampleGUI()
+    app.pack(fill="both", expand=True)
 
     root.mainloop()

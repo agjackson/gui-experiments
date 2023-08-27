@@ -11,19 +11,25 @@ class StyleExp:
 
         # ------------------- STYLING
         s = ttk.Style()
-        s.configure('mainFrame.TFrame', background = 'red')
+        s.configure('mainFrame.TFrame', background = '#759304')
+        s.configure('frame2.TFrame', background = '#F83FF3')
 
 
         # ------------------- WIDGETS
         mainFrame = ttk.Frame(self.root, width=250, height=250, style='mainFrame.TFrame')
         mainFrame.grid()
 
+        frame2 = ttk.Frame(mainFrame, width= 100, height=100, style='frame2.TFrame')
+        frame2.grid(padx = 10, pady = 10)
+
         # ------------------- GRID CONFIGURATION
+
+
 
         self.root.resizable(width=False, height=False)
         self.root.mainloop()
 
-StyleExp()
+#StyleExp()
 
 class DropDownMenu:
     def __init__(self):
@@ -102,7 +108,7 @@ class DifferentWidgets:
 
         self.root.mainloop()
 
-#DifferentWidgets()
+DifferentWidgets()
 
 class EventBinding:
     def __init__(self):

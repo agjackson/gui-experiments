@@ -1,5 +1,7 @@
 #!/usr/bin/env python
+
 import tkinter as tk
+from tkinter import * 
 from tkinter import messagebox
 
 class MyGUI:

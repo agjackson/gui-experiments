@@ -50,11 +50,6 @@ class TimelineHeader(ttk.Frame):
 
         self.current_step = self.import_label
 
-        """self.import_label.pack(padx=5, pady=5)
-        self.settings_label.pack(padx=5, pady=5)
-        self.review_label.pack(padx=5, pady=5)
-        self.export_label.pack(padx=5, pady=5)"""
-
         self.import_label.grid(row=0, column=0, sticky=tk.W+tk.E)
         self.settings_label.grid(row=0, column=1, sticky=tk.W+tk.E)
         self.review_label.grid(row=0, column=2, sticky=tk.W+tk.E)
